@@ -8,12 +8,12 @@ from modules.common.component_type import ComponentDescriptor
 from modules.common.fault_state import ComponentInfo, FaultState
 from modules.common.modbus import ModbusDataType, ModbusTcpClient_
 from modules.common.store import get_inverter_value_store
-from modules.devices.fox_ess.fox_ess.config import FoxEssInverterSetup
+from modules.devices.fox_ess.fox_ess_h3_pro.config import FoxEssH3ProInverterSetup
 
 
-class FoxEssInverter(AbstractInverter):
-    def __init__(self, component_config: Union[Dict, FoxEssInverterSetup]) -> None:
-        self.component_config = dataclass_from_dict(FoxEssInverterSetup, component_config)
+class FoxEssH3ProInverter(AbstractInverter):
+    def __init__(self, component_config: Union[Dict, FoxEssH3ProInverterSetup]) -> None:
+        self.component_config = dataclass_from_dict(FoxEssH3ProInverterSetup, component_config)
         self.store = get_inverter_value_store(self.component_config.id)
         self.fault_state = FaultState(ComponentInfo.from_component_config(self.component_config))
 
@@ -33,4 +33,4 @@ class FoxEssInverter(AbstractInverter):
         self.store.set(inverter_state)
 
 
-component_descriptor = ComponentDescriptor(configuration_factory=FoxEssInverterSetup)
+component_descriptor = ComponentDescriptor(configuration_factory=FoxEssH3ProInverterSetup)

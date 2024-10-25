@@ -6,25 +6,25 @@ from modules.common.abstract_device import DeviceDescriptor
 from modules.common.component_context import SingleComponentUpdateContext
 from modules.common.configurable_device import ConfigurableDevice, ComponentFactoryByType, MultiComponentUpdater
 from modules.common.modbus import ModbusTcpClient_
-from modules.devices.fox_ess.fox_ess.bat import FoxEssBat
-from modules.devices.fox_ess.fox_ess.counter import FoxEssCounter
-from modules.devices.fox_ess.fox_ess.inverter import FoxEssInverter
-from modules.devices.fox_ess.fox_ess.config import FoxEss, FoxEssBatSetup, FoxEssCounterSetup, FoxEssInverterSetup
+from modules.devices.fox_ess.fox_ess_h3_pro.bat import FoxEssH3ProBat
+from modules.devices.fox_ess.fox_ess_h3_pro.counter import FoxEssH3ProCounter
+from modules.devices.fox_ess.fox_ess_h3_pro.inverter import FoxEssH3ProInverter
+from modules.devices.fox_ess.fox_ess_h3_pro.config import FoxEssH3Pro, FoxEssH3ProBatSetup, FoxEssH3ProCounterSetup, FoxEssH3ProInverterSetup
 
 log = logging.getLogger(__name__)
 
 
-def create_device(device_config: FoxEss):
-    def create_bat_component(component_config: FoxEssBatSetup):
-        return FoxEssBat(component_config)
+def create_device(device_config: FoxEssH3Pro):
+    def create_bat_component(component_config: FoxEssH3ProBatSetup):
+        return FoxEssH3ProBat(component_config)
 
-    def create_counter_component(component_config: FoxEssCounterSetup):
-        return FoxEssCounter(component_config)
+    def create_counter_component(component_config: FoxEssH3ProCounterSetup):
+        return FoxEssH3ProCounter(component_config)
 
-    def create_inverter_component(component_config: FoxEssInverterSetup):
-        return FoxEssInverter(component_config)
+    def create_inverter_component(component_config: FoxEssH3ProInverterSetup):
+        return FoxEssH3ProInverter(component_config)
 
-    def update_components(components: Iterable[Union[FoxEssBat, FoxEssCounter, FoxEssInverter]]):
+    def update_components(components: Iterable[Union[FoxEssH3ProBat, FoxEssH3ProCounter, FoxEssH3ProInverter]]):
         with client as c:
             for component in components:
                 with SingleComponentUpdateContext(component.fault_state):
@@ -45,4 +45,4 @@ def create_device(device_config: FoxEss):
     )
 
 
-device_descriptor = DeviceDescriptor(configuration_factory=FoxEss)
+device_descriptor = DeviceDescriptor(configuration_factory=FoxEssH3Pro)

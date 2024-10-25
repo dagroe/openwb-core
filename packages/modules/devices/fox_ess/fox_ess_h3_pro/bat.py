@@ -7,14 +7,14 @@ from modules.common.component_type import ComponentDescriptor
 from modules.common.fault_state import ComponentInfo, FaultState
 from modules.common.modbus import ModbusDataType, ModbusTcpClient_
 from modules.common.store import get_bat_value_store
-from modules.devices.fox_ess.fox_ess.config import FoxEssBatSetup
+from modules.devices.fox_ess.fox_ess_h3_pro.config import FoxEssH3ProBatSetup
 
 log = logging.getLogger(__name__)
 
 
-class FoxEssBat(AbstractBat):
-    def __init__(self, component_config: FoxEssBatSetup) -> None:
-        self.component_config = dataclass_from_dict(FoxEssBatSetup, component_config)
+class FoxEssH3ProBat(AbstractBat):
+    def __init__(self, component_config: FoxEssH3ProBatSetup) -> None:
+        self.component_config = dataclass_from_dict(FoxEssH3ProBatSetup, component_config)
         self.store = get_bat_value_store(self.component_config.id)
         self.fault_state = FaultState(ComponentInfo.from_component_config(self.component_config))
 
@@ -37,4 +37,4 @@ class FoxEssBat(AbstractBat):
         self.store.set(bat_state)
 
 
-component_descriptor = ComponentDescriptor(configuration_factory=FoxEssBatSetup)
+component_descriptor = ComponentDescriptor(configuration_factory=FoxEssH3ProBatSetup)

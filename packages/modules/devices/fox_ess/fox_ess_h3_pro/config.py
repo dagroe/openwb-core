@@ -5,7 +5,7 @@ from modules.common.component_setup import ComponentSetup
 from ..vendor import vendor_descriptor
 
 
-class FoxEssConfiguration:
+class FoxEssH3ProConfiguration:
     def __init__(self,
                  ip_address: Optional[str] = None,
                  port: int = 502):
@@ -13,62 +13,62 @@ class FoxEssConfiguration:
         self.port = port
 
 
-class FoxEss:
+class FoxEssH3Pro:
     def __init__(self,
                  name: str = "FoxESS H3-Pro",
                  type: str = "fox_ess_h3_pro",
                  id: int = 0,
-                 configuration: FoxEssConfiguration = None) -> None:
+                 configuration: FoxEssH3ProConfiguration = None) -> None:
         self.name = name
         self.type = type
         self.vendor = vendor_descriptor.configuration_factory().type
         self.id = id
-        self.configuration = configuration or FoxEssConfiguration()
+        self.configuration = configuration or FoxEssH3ProConfiguration()
 
 
 @auto_str
-class FoxEssBatConfiguration:
+class FoxEssH3ProBatConfiguration:
     def __init__(self, modbus_id: int = 1):
         self.modbus_id = modbus_id
 
 
 @auto_str
-class FoxEssBatSetup(ComponentSetup[FoxEssBatConfiguration]):
+class FoxEssH3ProBatSetup(ComponentSetup[FoxEssH3ProBatConfiguration]):
     def __init__(self,
-                 name: str = "FoxESS Speicher",
+                 name: str = "FoxEss H3-Pro Speicher",
                  type: str = "bat",
                  id: int = 0,
-                 configuration: FoxEssBatConfiguration = None) -> None:
-        super().__init__(name, type, id, configuration or FoxEssBatConfiguration())
+                 configuration: FoxEssH3ProBatConfiguration = None) -> None:
+        super().__init__(name, type, id, configuration or FoxEssH3ProBatConfiguration())
 
 
 @auto_str
-class FoxEssCounterConfiguration:
+class FoxEssH3ProCounterConfiguration:
     def __init__(self, modbus_id: int = 1):
         self.modbus_id = modbus_id
 
 
 @auto_str
-class FoxEssCounterSetup(ComponentSetup[FoxEssCounterConfiguration]):
+class FoxEssH3ProCounterSetup(ComponentSetup[FoxEssH3ProCounterConfiguration]):
     def __init__(self,
-                 name: str = "FoxESS Zähler",
+                 name: str = "FoxESS H3-Pro Zähler",
                  type: str = "counter",
                  id: int = 0,
-                 configuration: FoxEssCounterConfiguration = None) -> None:
-        super().__init__(name, type, id, configuration or FoxEssCounterConfiguration())
+                 configuration: FoxEssH3ProCounterConfiguration = None) -> None:
+        super().__init__(name, type, id, configuration or FoxEssH3ProCounterConfiguration())
 
 
 @auto_str
-class FoxEssInverterConfiguration:
+class FoxEssH3ProInverterConfiguration:
     def __init__(self, modbus_id: int = 1):
         self.modbus_id = modbus_id
 
 
 @auto_str
-class FoxEssInverterSetup(ComponentSetup[FoxEssInverterConfiguration]):
+class FoxEssH3ProInverterSetup(ComponentSetup[FoxEssH3ProInverterConfiguration]):
     def __init__(self,
-                 name: str = "FoxESS Wechselrichter",
+                 name: str = "FoxEss H3-Pro Wechselrichter",
                  type: str = "inverter",
                  id: int = 0,
-                 configuration: FoxEssInverterConfiguration = None) -> None:
-        super().__init__(name, type, id, configuration or FoxEssInverterConfiguration())
+                 configuration: FoxEssH3ProInverterConfiguration = None) -> None:
+        super().__init__(name, type, id, configuration or FoxEssH3ProInverterConfiguration())
